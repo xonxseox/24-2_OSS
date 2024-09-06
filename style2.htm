@@ -72,12 +72,22 @@
       color: #84c754;
     }
 
-    #main{
+    #main {
       color: #84c754;
       padding: 10px;
     }
-    #top h1, #top p {
-      margin:0;
+
+    #top h1,
+    #top p {
+      margin: 0;
+    }
+    #menulist a {
+      color: #84c754;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #menulist a:hover{
+      color:#ffffff;
     }
   </style>
 </head>
@@ -97,13 +107,14 @@
     <div class="wrapper">
       <div id="menu">
         <ul id="menulist">
-          <li class="menucontent" onclick="reStyle(0)">Stylesheet 1
+          <li class="menucontent"><a href="https://oss-bjs.netlify.app/style1.htm">Stylesheet1</a>
           </li>
-          <li class="menucontent" onclick="reStyle(1)">Stylesheet 2
+          <li class="menucontent">Stylesheet2</a>
           </li>
-          <li class="menucontent" onclick="noStyles()">No Stylesheet
-          <br/>
-          <br/>
+          <li class="menucontent"><a href="https://oss-bjs.netlify.app/">No Stylesheet</a>
+          </li>
+          <br />
+          <br />
         </ul>
       </div>
       <div id="main">
@@ -152,7 +163,7 @@
 
     </div>
   </div>
-  
+
 </body>
 
-</html> 
+</html>
