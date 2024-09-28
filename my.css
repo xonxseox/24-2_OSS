@@ -1,0 +1,45 @@
+/* 기본 스타일 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+/* 데스크탑에서 [추가] 버튼 왼쪽 정렬 */
+@media (min-width: 768px) {
+  .add-button {
+    float: left;
+  }
+}
+
+/* 모바일에서 [추가] 버튼 중앙 정렬 */
+@media (max-width: 767px) {
+  .add-button {
+    display: block;
+    margin: 0 auto;
+    /* 중앙 정렬 */
+  }
+}
+
+/* 버튼 스타일 */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+  button {
+    background-color: #007bff;
+    /* 데스크탑에서 버튼 색 */
+    color: white;
+  }
+}
+
+@media (max-width: 767px) {
+  button {
+    background-color: #28a745;
+    /* 모바일에서 버튼 색 */
+    color: white;
+  }
+}

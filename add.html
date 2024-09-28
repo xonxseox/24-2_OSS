@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="my.css">
+  <title>도서 추가</title>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      /* 살짝 밝은 배경 색 */
+    }
+
+    .form-container {
+      max-width: 600px;
+      /* 폼의 최대 너비 */
+      margin-top: 50px;
+      /* 상단 여백 */
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container form-container">
+    <h1>도서 추가</h1>
+    <form id="bookForm" class="border p-4 bg-white shadow rounded">
+      <div class="form-group">
+        <label for="title">제목 (필수):</label>
+        <input type="text" id="title" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="author">저자 (필수):</label>
+        <input type="text" id="author" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="publisher">출판사 (필수):</label>
+        <input type="text" id="publisher" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="year">출판연도 (필수):</label>
+        <input type="number" id="year" class="form-control" required>
+      </div>
+
+      <div class="btn-container">
+        <button type="button" class="btn btn-primary" onclick="addBook()">확인</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='index.html'">취소</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function addBook() {
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const publisher = document.getElementById('publisher').value;
+      const year = document.getElementById('year').value;
+
+      if (title.trim() === '' || author.trim() === '' || publisher.trim() === '' || year.trim() === '') {
+        alert('모든 필수 항목을 입력하세요.');
+      } else {
+        alert('게시물이 추가됩니다.');
+        // 추가 처리 로직
+      }
+    }
+  </script>
+</body>
+
+</html>

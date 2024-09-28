@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="my.css">
+  <title>도서 수정</title>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      /* 부드러운 배경색 */
+    }
+
+    .edit-container {
+      max-width: 600px;
+      margin-top: 50px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .edit-form {
+      background-color: #ffffff;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-container button {
+      min-width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container edit-container">
+    <h1>도서 수정</h1>
+    <form id="editForm" class="edit-form">
+      <div class="form-group">
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="author">저자:</label>
+        <input type="text" id="author" name="author" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="publisher">출판사:</label>
+        <input type="text" id="publisher" name="publisher" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="year">출판연도:</label>
+        <input type="number" id="year" name="year" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="genre">장르:</label>
+        <input type="text" id="genre" name="genre" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" class="form-control" required>
+      </div>
+
+      <div class="btn-container">
+        <button type="button" class="btn btn-success" onclick="confirmUpdate()">확인</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='index.html'">취소</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function getQueryParameter(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // 페이지 로드 시 도서 정보 설정
+    document.getElementById('title').value = getQueryParameter('title');
+    document.getElementById('author').value = getQueryParameter('author');
+    document.getElementById('publisher').value = getQueryParameter('publisher');
+    document.getElementById('year').value = getQueryParameter('year');
+    document.getElementById('genre').value = getQueryParameter('genre');
+    document.getElementById('isbn').value = getQueryParameter('isbn');
+
+    function confirmUpdate() {
+      if (confirm("게시물을 수정할까요?")) {
+        alert("게시물이 수정되었습니다.");
+        // 수정 처리 로직 (서버에 업데이트하거나 다른 페이지로 이동)
+      }
+    }
+  </script>
+</body>
+
+</html>
