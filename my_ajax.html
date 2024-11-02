@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <title>과일 관리</title>
+</head>
+
+<body>
+  <h1>과일 관리 시스템</h1>
+  <button onclick="getDataFromJSONFile()">과일 목록 보기</button>
+  <div>
+    이름: <input type="text" id="fruit_name" placeholder="과일 이름 입력" />
+    색상: <input type="text" id="fruit_color" placeholder="색상 입력" />
+    가격(kg당): <input type="number" id="fruit_price" placeholder="가격 입력" />
+    원산지: <input type="text" id="fruit_origin" placeholder="원산지 입력" />
+    <button onclick="createDataToJSONFile()">과일 추가</button>
+  </div>
+  <div>
+    수정/삭제할 과일 ID: <input type="text" id="fruit_id" placeholder="과일 ID 입력" />
+    <button onclick="updateDataToJSONFile()">과일 수정</button>
+    <button onclick="deleteDataFromJSONFile()">과일 삭제</button>
+  </div>
+  <div id="div_fruits">
+    <!-- 과일 목록이 여기에 표시됩니다. -->
+  </div>
+
+  <script>
+    function getDataFromJSONFile() {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost:3000/fruits");
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send();
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          $("#div_fruits").html("");
+          let fruits = JSON.parse(xhr.response);
+          fruits.forEach((item) => {
+            $("#div_fruits").append(`<div>ID: ${item.id}, 이름: ${item.name}, 색상: ${item.color}, 가격: ${item.pricePerKg}원, 원산지: ${item.origin}</div>`);
+          });
+        }
+      }
+    }
+
+    function createDataToJSONFile() {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://localhost:3000/fruits");
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+      let data = {
+        name: $("#fruit_name").val(),
+        color: $("#fruit_color").val(),
+        pricePerKg: $("#fruit_price").val(),
+        origin: $("#fruit_origin").val()
+      };
+
+      xhr.send(JSON.stringify(data));
+      xhr.onload = () => {
+        if (xhr.status === 201) {
+          alert("과일이 추가되었습니다!");
+          getDataFromJSONFile();
+        }
+      }
+    }
+
+    function updateDataToJSONFile() {
+      let id = $("#fruit_id").val();
+      const xhr = new XMLHttpRequest();
+      xhr.open("PUT", `http://localhost:3000/fruits/${id}`);
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+      let data = {
+        name: $("#fruit_name").val(),
+        color: $("#fruit_color").val(),
+        pricePerKg: $("#fruit_price").val(),
+        origin: $("#fruit_origin").val()
+      };
+
+      xhr.send(JSON.stringify(data));
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          alert("과일 정보가 수정되었습니다!");
+          getDataFromJSONFile();
+        }
+      }
+    }
+
+    function deleteDataFromJSONFile() {
+      let id = $("#fruit_id").val();
+      const xhr = new XMLHttpRequest();
+      xhr.open("DELETE", `http://localhost:3000/fruits/${id}`);
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send();
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          alert("과일이 삭제되었습니다!");
+          getDataFromJSONFile();
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
